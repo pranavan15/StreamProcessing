@@ -4,7 +4,7 @@ import ballerina.net.http;
 import ballerina.file;
 import ballerina.io;
 
-file:File directory = {path:"/home/pranavan/IdeaProjects/Ballerina-samples/StreamProcessing/fileStream/util"};
+file:File directory = {path:"/home/pranavan/IdeaProjects/StreamProcessing/fileStream/util"};
 
 @http:configuration {basePath:"/lyricsService"}
 service<http> lyricsService {
@@ -38,7 +38,7 @@ function getFileNames()(json[] fileNames) {
     while (i < lengthof filesList) {
         var filePath, _ = <json>filesList[i];
         string file = filePath.toString();
-        file = file.replace("{\"path\":\"/home/pranavan/IdeaProjects/Ballerina-samples/StreamProcessing/fileStream/util/", "");
+        file = file.replace("{\"path\":\"/home/pranavan/IdeaProjects/StreamProcessing/fileStream/util/", "");
         file = file.replace(".txt\"}", "");
         files[i] = file;
         i = i + 1;
@@ -47,7 +47,7 @@ function getFileNames()(json[] fileNames) {
 }
 
 function getLyrics(string songName)(blob lyrics) {
-    string filePath = "/home/pranavan/IdeaProjects/Ballerina-samples/StreamProcessing/fileStream/util/" + songName + ".txt";
+    string filePath = "/home/pranavan/IdeaProjects/StreamProcessing/fileStream/util/" + songName + ".txt";
     io:ByteChannel channel = getFileChannel(filePath, "r");
     var readContent, numOfBytesRead = readBytes(channel);
     return readContent;
